@@ -30,16 +30,55 @@ function checkLarger(a, b) {
 console.log(`${checkLarger(10, 9)} is larger`);
 
 function calculate(a, b, operator) {
-  switch (operator) {
-    case "+":
-      return a + b;
-    case "-":
-      return a - b;
-    case "*":
-      return a * b;
-    case "/":
-      return b == 0 ? "Error: Division by Zero" : a / b;
-    default:
-      return "Error";
+  console.log(`Inputs: ${a}, ${b}, ${operator}`);
+  a = Number(a);
+  b = Number(b);
+
+  if (isNaN(a) || isNaN(b)) {
+    return "Error: Invalid number input";
   }
+
+  if (operator === "/" && b === 0) {
+    return "Error: Cannot divide by zero";
+  }
+
+  let result;
+
+  if (operator === "+") {
+    result = a + b;
+  } else if (operator === "-") {
+    result = a - b;
+  } else if (operator === "*") {
+    result = a * b;
+  } else if (operator === "/") {
+    result = a / b;
+  } else {
+    return "Error: Invalid operator";
+  }
+  if (result !== undefined) {
+    console.log("Result:", result);
+  }
+  return result;
 }
+
+calculate(5, 3, "+");
+calculate("5", 3, "+");
+calculate("hello", 5, "+");
+calculate(10, 0, "/");
+calculate(10, 2, "/");
+
+/* OR
+const operations = {
+  "+": (a, b) => a + b,
+  "-": (a, b) => a - b,
+  "*": (a, b) => a * b,
+  "/": (a, b) => a / b,
+};
+
+if (!operations[operator]) {
+  return "Invalid operator";
+}
+
+let result = operations[operator](a, b);
+
+*/
